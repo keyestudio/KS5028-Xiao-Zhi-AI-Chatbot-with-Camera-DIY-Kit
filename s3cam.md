@@ -56,6 +56,44 @@ The boxed jumper wires include various lengths and colors of Dupont wires, usefu
 ![Img](media/img-20250409132146.png)  
 Breadboards are used to quickly build and debug prototype circuits without soldering and effectively manage circuit connections. The 400-hole design is sufficient for common modules and jumper wires, allowing easy component plugging and layout adjustment.
 
+### 7. 1.54-Inch IPS Display Screen Module
+
+![Img](D:\Desktop\KS5028 英文教程-V01\media\img-20250416175042-17924554875511.png)
+
+
+The 1.54-inch IPS Display Screen module is a high-performance display suitable for a wide range of electronic projects and products. This module uses advanced IPS technology, which can provide rich colors and clear display effects, making it ideal for applications that require high visibility. Its compact size and simple interface design make it very suitable for embedded development and portable devices.
+
+Features
+
+- **High Resolution Display**: A resolution of 240x240 pixels ensures clear images with rich details.
+- **Rich Colors**: Supports RGB 65K color display, which can present more vivid and realistic images.
+- **Wide Viewing Angle**: IPS technology provides ultra-wide viewing angles, maintaining excellent image quality even from larger angles.
+- **Simple Interface**: Uses a 4-wire SPI serial bus interface, requiring only a few I/O pins for connection.
+- **Wide Compatibility**: Provides a wealth of examples for STM32, C51, and MSP430, making it easy to develop and integrate.
+- **Military-Grade Standards**: Compliant with military-level processes to ensure long-term stable operation in various environments.
+- **Technical Support**: Offers low-level driver technical support to help developers get started quickly.
+
+Parameters
+
+| Name                                 | Parameter            |
+| ------------------------------------ | -------------------- |
+| **Display Color**                    | RGB 65K              |
+| **SKU**                              | MSP1541              |
+| **Size**                             | 1.54 inch            |
+| **Panel Material**                   | TFT                  |
+| **Driver Chip**                      | ST7789               |
+| **Resolution**                       | 240 x 240 pixels     |
+| **Display Interface**                | 4-line SPI interface |
+| **Effective Display Area (AA Area)** | 27.72 x 27.72 mm     |
+| **Touch Screen Type**                | None                 |
+| **Touch IC**                         | None                 |
+| **Module PCB Size**                  | 32.00 x 43.72 mm     |
+| **Viewing Angle**                    | Full Angle           |
+| **Operating Temperature**            | -10℃ ~ 60℃           |
+| **Storage Temperature**              | -20℃ ~ 70℃           |
+| **Operating Voltage**                | 3.3-5V               |
+| **Power Consumption**                | To be determined     |
+
 ---
 
 # How to Wire
@@ -81,7 +119,7 @@ Breadboards are used to quickly build and debug prototype circuits without solde
 | GPIO **39** | **DIN** (Digital Input) |
 | GPIO **40** | **BCLK** (Bit Clock) |
 | GPIO **41** | **LRC** (Left-Right Clock) |
-| **3V3** / 3.3V | **Vin/VCC** (Power Input) **and short-circuit with** **SD** |
+| 5V | **Vin/VCC** (Power Input) **and short-circuit with** **SD** |
 | **GND** | **GND** (Ground) |
 | | **Audio+** connect to **Speaker Positive** |
 | | **Audio-** connect to **Speaker Negative** |
@@ -90,6 +128,19 @@ Breadboards are used to quickly build and debug prototype circuits without solde
 
 ### 3. Wiring ESP32S3-CAM Board to Camera
 The camera is usually connected directly to the development board’s **24-Pin FPC Connector** via a flat cable, no manual wiring needed. Ensure the cable direction is correct (metal contacts facing down), gently insert and lock the clip.
+
+#### 4. Wiring between ESP32S3 Development Board and 1.54-Inch IPS Display Screen
+
+| ESP32S3 Pin | Display Screen Pin | Function Description                        |
+| ----------- | ------------------ | ------------------------------------------- |
+| GND         | GND                | Ground                                      |
+| 5V          | VCC                | Positive Power                              |
+| GPIO19      | SCL                | SPI Clock Signal                            |
+| GPIO20      | SDA                | SPI Data Signal                             |
+| GPIO21      | RES                | Reset Signal                                |
+| GPIO47      | DC                 | Data/Command Select Signal                  |
+| GPIO45      | CS                 | Chip Select Signal                          |
+| GPIO38      | BLK                | Backlight Control Signal (High to light up) |
 
 ---
 
@@ -100,16 +151,16 @@ The camera is usually connected directly to the development board’s **24-Pin F
 2.  **Connect the Microphone:** Strictly follow the wiring table above, use Dupont wires to connect the INMP441 microphone to the corresponding GPIO pins, 3V3, and GND on the development board.  
 ![Img](media/img-20251226140952.png)
 
-3.  **Connect the Amplifier:** Strictly follow the wiring table above, use Dupont wires to connect the MAX98357A amplifier to the corresponding GPIO pins, 3V3, and GND on the development board.  
-![Img](media/img-20251226134909.png)
+3.  **Connect the Amplifier:** Strictly follow the wiring table above, use Dupont wires to connect the MAX98357A amplifier to the corresponding GPIO pins, 5, and GND on the development board.  
+![image-20261016162254109](media/image-20261016162254109.png)
 
 4.  **Connect the LCD Screen:** *(Note: This is an additional step. Please connect your LCD screen to suitable pins on the ESP32-S3-CAM according to your LCD screen’s model and pin definitions.)*  
-![Img](media/img-20251226140806.png)
+![image-20261016162432048](media/image-20261016162432048.png)
 
 5.  **Connect the Speaker:** Connect the speaker wires to the MAX98357A amplifier’s `Audio+` and `Audio-` screw terminals or pins.
 
 6.  **Check Wiring:** After completing, carefully verify every wire to ensure no incorrect connections or shorts.  
-![Img](media/img-20251226152742.png)
+![image-20261016162512754](media/image-20261016162512754.png)
 
 ---
 ## Common Wiring Issues FAQ
@@ -227,11 +278,11 @@ After flashing, press the `RST` button on the development board to restart. The 
 ### 3) Configuration Steps
 1.  **Connect to "Xiao Zhi" Wi-Fi**  
     Use your phone or computer to search for Wi-Fi and connect to the device’s hotspot (usually named *Xiaozhi-XXXXXX*).  
-  ![Img](media/img-20250419111300.png)
+    ![Img](media/img-20250419111300.png)
 
 2.  **Configure Network**  
     After connecting, the phone typically auto-displays the configuration page. If not, open a browser and navigate to `http://192.168.4.1`.  
-![Img](media/img-20250419112718.png)  
+    ![Img](media/img-20250419112718.png)  
     > - Select your 2.4G Wi-Fi network (5G is not supported).  
     > - Enter the Wi-Fi password and click **Connect**.  
     > - If the connection succeeds, the interface shows “Done,” and the device will reboot and connect to your Wi-Fi.
