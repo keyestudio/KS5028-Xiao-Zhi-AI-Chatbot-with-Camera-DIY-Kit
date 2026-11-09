@@ -137,7 +137,7 @@ The camera is usually connected directly to the development board’s **24-Pin F
 | 5V          | VCC                | Positive Power                              |
 | GPIO19      | SCL                | SPI Clock Signal                            |
 | GPIO20      | SDA                | SPI Data Signal                             |
-| GPIO21      | RES                | Reset Signal                                |
+| GPIO21      | RST                | Reset Signal                                |
 | GPIO47      | DC                 | Data/Command Select Signal                  |
 | GPIO45      | CS                 | Chip Select Signal                          |
 | GPIO38      | BLK                | Backlight Control Signal (High to light up) |
@@ -151,7 +151,7 @@ The camera is usually connected directly to the development board’s **24-Pin F
 2.  **Connect the Microphone:** Strictly follow the wiring table above, use Dupont wires to connect the INMP441 microphone to the corresponding GPIO pins, 3V3, and GND on the development board.  
 ![Img](media/img-20251226140952.png)
 
-3.  **Connect the Amplifier:** Strictly follow the wiring table above, use Dupont wires to connect the MAX98357A amplifier to the corresponding GPIO pins, 5, and GND on the development board.  
+3.  **Connect the Amplifier:** Strictly follow the wiring table above, use Dupont wires to connect the MAX98357A amplifier to the corresponding GPIO pins, 5v, and GND on the development board.  
 ![image-20261016162254109](media/image-20261016162254109.png)
 
 4.  **Connect the LCD Screen:** *(Note: This is an additional step. Please connect your LCD screen to suitable pins on the ESP32-S3-CAM according to your LCD screen’s model and pin definitions.)*  
